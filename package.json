@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "All resources used for my personal learning & my micro learning journals",
   "scripts": {
-    "dev": "yarn download-notes && yarn move-notes && node scripts/updateRedirects.js && astro dev",
-    "start": "yarn download-notes && yarn move-notes && node scripts/updateRedirects.js && astro dev",
-    "build": "yarn download-notes && yarn move-notes && node scripts/updateRedirects.js && astro build",
+    "dev": "yarn download-notes && yarn move-notes || node scripts/updateRedirects.js && astro dev",
+    "start": "yarn download-notes && yarn move-notes || node scripts/updateRedirects.js && astro dev",
+    "build": "yarn download-notes && yarn move-notes || node scripts/updateRedirects.js && astro build",
     "preview": "astro preview",
     "create-note": "node ./scripts/createNote.js",
     "dev:create-note": "env NODE_ENV=development node ./scripts/createNote.js",
