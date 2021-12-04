@@ -1,6 +1,7 @@
 # build output
 dist
 build
+temp
 
 # dependencies
 node_modules/
