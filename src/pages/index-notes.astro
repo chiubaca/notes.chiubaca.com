@@ -1,0 +1,21 @@
+---
+import AllIndexNotesLayout from '../layouts/AllIndexNotesLayout.astro';
+
+interface MarkdownFrontmatter {
+  title?: string;
+  publish_date: number;
+}
+
+let indexNotes = Astro.fetchContent<MarkdownFrontmatter>('./index-notes/*.md');
+---
+
+<AllIndexNotesLayout>
+  <section>
+    <ul>
+      {indexNotes.map(p => <li> <h2><a href={p.url}>
+          {p.title}
+        </a>
+      </h2></li>)}
+    </ul>
+  </section>
+</AllIndexNotesLayout>

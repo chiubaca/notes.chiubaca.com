@@ -1,0 +1,29 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const {content} = Astro.props;
+const {source, publish_date} = content;
+---
+
+<BaseLayout 
+  title={publish_date} 
+  description={source} 
+  permalink={`https://learning.chiubaca.com/fleeting-notes/${publish_date}`}
+>
+  <nav>    
+    <a href="/"> 🏠 Home </a> / 
+    <a href="/fleeting-notes"> 📝 fleeting-notes </a> / 
+    <span> {publish_date} </span> 
+  </nav> 
+
+
+  <header> 
+    <h1>/{ publish_date }/</h1>
+  </header>
+  
+  <a href={`https://github.com/chiubaca/learning/tree/master/src/pages/fleeting-notes/${publish_date}.md`}> Edit on GitHub ✏️ </a>
+  <hr>
+  <slot />
+</BaseLayout>
+
+

@@ -1,0 +1,12 @@
+---
+export interface Props {
+  note: any
+}
+
+const { note } = Astro.props;
+---
+
+<article>
+  <h2> <a href={note.url}>/{ note.title|| note['publish_date']}/</a></h2>
+  <section>{note.astro.html}</section>
+</article>

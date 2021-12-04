@@ -1,0 +1,23 @@
+---
+import { DateTime } from "luxon";
+
+import AllFleetingNotesLayout from '../layouts/AllFleetingNotesLayout.astro';
+import Note from '../components/Note.astro';
+
+interface MarkdownFrontmatter {
+  publish_date: number;
+}
+
+
+let fleetingNotes = Astro.fetchContent<MarkdownFrontmatter>('./fleeting-notes/*.md');
+fleetingNotes = fleetingNotes.sort((a, b) =>  DateTime.fromISO(b['publish_date']).ts - DateTime.fromISO(a['publish_date']).ts);
+
+---
+
+<AllFleetingNotesLayout>
+  <section>
+    {fleetingNotes.map(p => <Note note={p} />)}
+  </section>
+</AllFleetingNotesLayout>
+
+

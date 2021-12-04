@@ -1,0 +1,84 @@
+<button id='theme-switcher' onclick='themeHandler()'></button>
+
+<script>
+
+  const LIGHT_THEME = 'https://cdn.jsdelivr.net/npm/water.css@2/out/light.css'
+  const DARK_THEME = 'https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css'
+  const localStorageTheme = localStorage.getItem('theme')
+  
+  const stylesheet = document.getElementById('theme')
+  const themeSwitcherButton = document.getElementById('theme-switcher')
+  
+  const systemTheme = () => { 
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches){
+      return 'dark'
+    }
+      return ' light'
+    }
+    
+    // Set the initial theme
+    let currentTheme = systemTheme() === 'dark' ? 'dark' : 'light'
+    themeSwitcherButton.innerHTML = currentTheme === 'dark' ? '🌞' : '🌚'
+
+    // Set the current them if a theme as been set already
+    if(localStorageTheme){
+      if (localStorageTheme === 'dark'){
+        stylesheet.href = DARK_THEME
+        currentTheme = 'dark'
+        themeSwitcherButton.innerHTML = '🌞'
+      }
+
+      if (localStorageTheme === 'light'){
+        stylesheet.href = LIGHT_THEME
+        currentTheme = 'light'
+        themeSwitcherButton.innerHTML = '🌚'
+      }
+    }
+
+
+    function themeHandler () {
+
+      if(currentTheme === 'dark'){
+        stylesheet.href = LIGHT_THEME
+        currentTheme = 'light'
+        themeSwitcherButton.innerHTML = '🌚'
+        localStorage.setItem('theme', 'light')
+        return
+      }
+
+      if(currentTheme === 'light'){
+        stylesheet.href = DARK_THEME
+        currentTheme = 'dark'
+         themeSwitcherButton.innerHTML = '🌞'
+         localStorage.setItem('theme', 'dark')
+        return
+      }
+    }
+
+</script>
+
+
+<style>
+  #theme-switcher{
+    position: fixed;
+    right: 10px;
+    padding: 5px;
+    opacity: 20%;
+  }
+
+  #theme-switcher:hover{
+    opacity: 100%;
+    animation: fadeIn 0.5s;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 20%;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
+
+</style>
+

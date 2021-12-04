@@ -1,0 +1,17 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const title = 'Learning Journal | Fleeting Notes';
+const description = `This is where I log notes for everything that I've read, watched and listened to.`;
+const permalink = 'https://learning.chiubaca.com/fleeting-notes';
+---
+<BaseLayout title={title} description={description} permalink={permalink}>
+  <nav><a href="/">/🏠Home</a> / 📝 fleeting-notes </nav>
+  <header> 
+    <h1>📝 Fleeting Notes</h1>
+    <p>Daily musings, ramblings & reflections...</p>
+    <hr />
+  </header>
+
+  <slot/>
+</BaseLayout>

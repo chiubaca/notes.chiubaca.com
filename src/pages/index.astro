@@ -1,0 +1,50 @@
+---
+import { DateTime } from "luxon";
+
+import IndexLayout from '../layouts/IndexLayout.astro'
+import Note from '../components/Note.astro';
+
+interface MarkdownFrontmatter {
+  publish_date: number;
+}
+
+const title = 'Learning Journal';
+
+let fleetingNotes =  Astro.fetchContent<MarkdownFrontmatter>('./fleeting-notes/*.md');
+fleetingNotes = fleetingNotes.sort((a, b) =>  DateTime.fromISO(b['publish_date']).ts - DateTime.fromISO(a['publish_date']).ts);
+const latestFleetingNote =  fleetingNotes[0];
+---
+
+<IndexLayout>
+  <header>
+    <h1> {title} </h1>
+    <p> This is where I log notes for everything that I've read, watched and listened to.</p>
+    <p> I'm using the <a href="https://zettelkasten.de/introduction/">Zettelkasten Method</a> to build my second brain here.</p>
+    <p> Every resource that has helped expand my knowledge can also be found on my <a href="https://github.com/chiubaca/learning">GitHub</a>.</p>
+    <hr>
+  </header>
+  <section>
+   
+ 
+   <details>
+      <summary> 📝 Latest Fleeting Note</summary>
+      <Note note={latestFleetingNote}/>
+   </details>
+
+    <h2> <a href="/fleeting-notes"> 📝 All Fleeting Notes</a></h2>
+  </section>
+  <hr />
+  <section>
+    <h2> <a href="/literature-notes"> 📚 All Literature Notes </a></h2>
+    <h2> <a href="/permanent-notes"> 🧠 Permanent Notes </a></h2>
+    <h2> <a href="/index-notes"> 🔢 Index Notes </a></h2>
+  </section>
+</IndexLayout>
+
+<style>
+  details {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: .5em .5em 0;
+  }
+</style>

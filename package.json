@@ -1,0 +1,28 @@
+{
+  "name": "learning",
+  "version": "1.0.0",
+  "description": "All resources used for my personal learning & my micro learning journals",
+  "scripts": {
+    "dev": "yarn download-notes && yarn move-notes && node scripts/updateRedirects.js && astro dev",
+    "start": "yarn download-notes && yarn move-notes && node scripts/updateRedirects.js && astro dev",
+    "build": "yarn download-notes && yarn move-notes && node scripts/updateRedirects.js && astro build",
+    "preview": "astro preview",
+    "create-note": "node ./scripts/createNote.js",
+    "dev:create-note": "env NODE_ENV=development node ./scripts/createNote.js",
+    "update-redirects": "node scripts/updateRedirects.js",
+    "download-notes": "git clone https://github.com/chiubaca/notes.chiubaca.com.git temp",
+    "move-notes": "mv temp/* src/pages/ && rm -rf temp"
+    
+  },
+  "author": "Alex Chiu",
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/rest": "^18.0.9",
+    "dotenv": "^8.2.0",
+    "frontmatter-file-batcher": "^0.0.1-beta.0",
+    "luxon": "^2.0.2"
+  },
+  "devDependencies": {
+    "astro": "^0.21.4"
+  }
+}

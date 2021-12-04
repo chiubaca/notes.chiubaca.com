@@ -1,0 +1,17 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const title = 'Learning Journal | Permanent Notes';
+const description = `Finalising my thoughts into essays and blogs. Writings here are all WIP`;
+const permalink = 'https://learning.chiubaca.com/index-notes';
+---
+<BaseLayout title={title} description={description} permalink={permalink}>
+  <nav><a href="/">/🏠Home</a> / 🧠 permenent-notes </nav>
+  <header> 
+    <h1>🧠 Index Notes</h1>
+    <p>Finalising my thoughts into essays and blogs.</p>
+    <hr />
+  </header>
+  
+  <slot/>
+</BaseLayout>

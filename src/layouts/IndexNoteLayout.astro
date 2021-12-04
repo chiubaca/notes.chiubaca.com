@@ -1,0 +1,27 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const {content} = Astro.props;
+const { title } = content;
+---
+
+<BaseLayout 
+  title={title} 
+  description={`Index of all notes related to ${title}`} 
+  permalink={`https://learning.chiubaca.com/index-notes/${title}`}
+>
+  <nav>    
+    <a href="/"> 🏠 Home </a> / 
+    <a href="/index-notes"> 🔢 index-notes </a> / 
+    <span> {title} </span> 
+  </nav> 
+
+  <header> 
+    <h1>/{ title }/</h1>
+  </header>
+
+  <hr>
+  <slot />
+</BaseLayout>
+
+

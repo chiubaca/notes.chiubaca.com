@@ -1,0 +1,25 @@
+---
+import { DateTime } from "luxon";
+
+import AllLiteratureNotesLayout from '../layouts/AllPermanentNotesLayout.astro'
+
+interface MarkdownFrontmatter {
+  title?: string;
+  publish_date: number;
+}
+
+let literatureNotes = Astro.fetchContent<MarkdownFrontmatter>('./permanent-notes/*.md');
+literatureNotes = literatureNotes.sort((a, b) =>  DateTime.fromISO(b['publish_date']).ts - DateTime.fromISO(a['publish_date']).ts);
+
+---
+  
+<AllLiteratureNotesLayout>
+  <section>
+    <ul>
+      {literatureNotes.map(p => <li> <h2><a href={p.url}>
+          {p.title}
+        </a>
+      </h2></li>)}
+    </ul>
+  </section>
+</AllLiteratureNotesLayout>
