@@ -10,7 +10,7 @@
     "create-note": "node ./scripts/createNote.js",
     "dev:create-note": "env NODE_ENV=development node ./scripts/createNote.js",
     "update-redirects": "node scripts/updateRedirects.js",
-    "download-notes": "git clone https://github.com/chiubaca/notes.chiubaca.com.git temp",
+    "download-notes": "git clone https://github.com/chiubaca/learning temp",
     "move-notes": "mv temp/* src/pages/ && rm -rf temp"
     
   },
